@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Unit Converter</h1>
+        <div class="converter">
+            <input type="number" id="mgL" placeholder="mg/L" oninput="convertFromMgL()">
+            <input type="number" id="ppm" placeholder="ppm" oninput="convertFromPpm()">
+            <input type="number" id="ppb" placeholder="ppb" oninput="convertFromPpb()">
+            <input type="number" id="molL" placeholder="mol/L" oninput="convertFromMolL()">
+            <input type="number" id="umolL" placeholder="μmol/L" oninput="convertFromUmolL()">
+            <input type="number" id="ueqL" placeholder="μeq/L" oninput="convertFromUeqL()">
+            <div>
+                <label for="molarMass">Molar Mass (g/mol):</label>
+                <input type="number" id="molarMass" value="18.01528" oninput="convertFromMgL()">
+            </div>
+            <div>
+                <label for="ionCharge">Ion Charge:</label>
+                <input type="number" id="ionCharge" value="1" oninput="convertFromMgL()">
+            </div>
+            <button onclick="clearFields()">Clear</button>
+        </div>
+        <div class="info">
+            <h2>Conversion Info</h2>
+            <p><strong>mg/L:</strong> Milligrams per liter. Often used in water quality.</p>
+            <p><strong>ppm:</strong> Parts per million. Equivalent to mg/L in water.</p>
+            <p><strong>ppb:</strong> Parts per billion. 1 ppm = 1000 ppb.</p>
+            <p><strong>mol/L:</strong> Moles per liter. Used for molar concentrations.</p>
+            <p><strong>μmol/L:</strong> Micromoles per liter. 1 mol/L = 1,000,000 μmol/L.</p>
+            <p><strong>μeq/L:</strong> Microequivalents per liter. Depends on ion charge.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
