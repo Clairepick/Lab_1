@@ -1,3 +1,14 @@
+function roundToFourSigFigs(num) {
+    if (num === 0) return 0;
+    const sign = Math.sign(num);
+    num = Math.abs(num);
+    const magnitude = Math.floor(Math.log10(num));
+    const factor = Math.pow(10, magnitude - 3);
+    const rounded = sign * Math.round(num / factor) * factor;
+
+    return parseFloat(rounded.toPrecision(4));
+}
+
 function convertFromMgL() {
     let mgL = parseFloat(document.getElementById('mgL').value);
     if (isNaN(mgL)) mgL = 0;
@@ -14,11 +25,11 @@ function convertFromMgL() {
     let umolL = molL * 1e6;
     let ueqL = umolL * ionCharge;
 
-    document.getElementById('ppm').value = ppm;
-    document.getElementById('ppb').value = ppb;
-    document.getElementById('molL').value = molL;
-    document.getElementById('umolL').value = umolL;
-    document.getElementById('ueqL').value = ueqL;
+    document.getElementById('ppm').value = roundToFourSigFigs(ppm);
+    document.getElementById('ppb').value = roundToFourSigFigs(ppb);
+    document.getElementById('molL').value = roundToFourSigFigs(molL);
+    document.getElementById('umolL').value = roundToFourSigFigs(umolL);
+    document.getElementById('ueqL').value = roundToFourSigFigs(ueqL);
 }
 
 function convertFromPpm() {
@@ -33,7 +44,7 @@ function convertFromPpb() {
     if (isNaN(ppb)) ppb = 0;
 
     let mgL = ppb / 1000;
-    document.getElementById('mgL').value = mgL;
+    document.getElementById('mgL').value = roundToFourSigFigs(mgL);
     convertFromMgL();
 }
 
@@ -45,7 +56,7 @@ function convertFromMolL() {
     if (isNaN(molarMass) || molarMass === 0) molarMass = 18.01528; // Default to water
 
     let mgL = molL * 1000 * molarMass;
-    document.getElementById('mgL').value = mgL;
+    document.getElementById('mgL').value = roundToFourSigFigs(mgL);
     convertFromMgL();
 }
 
@@ -54,7 +65,7 @@ function convertFromUmolL() {
     if (isNaN(umolL)) umolL = 0;
 
     let molL = umolL / 1e6;
-    document.getElementById('molL').value = molL;
+    document.getElementById('molL').value = roundToFourSigFigs(molL);
     convertFromMolL();
 }
 
@@ -66,7 +77,7 @@ function convertFromUeqL() {
     if (isNaN(ionCharge) || ionCharge === 0) ionCharge = 1;
 
     let umolL = ueqL / ionCharge;
-    document.getElementById('umolL').value = umolL;
+    document.getElementById('umolL').value = roundToFourSigFigs(umolL);
     convertFromUmolL();
 }
 
